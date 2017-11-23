@@ -1,4 +1,5 @@
-	.file	"calculator.c"
+	.file	"calculator.pp.c"
+	.intel_syntax noprefix
 	.section	.rodata
 	.align 8
 .LC0:
@@ -9,24 +10,24 @@
 main:
 .LFB0:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movl	%edi, -20(%rbp)
-	movq	%rsi, -32(%rbp)
-	movl	$11, %esi
-	movl	$31, %edi
+	sub	rsp, 32
+	mov	DWORD PTR -20[rbp], edi
+	mov	QWORD PTR -32[rbp], rsi
+	mov	esi, 11
+	mov	edi, 31
 	call	add_numbers
-	movl	%eax, -4(%rbp)
-	movl	-4(%rbp), %eax
-	movl	%eax, %esi
-	leaq	.LC0(%rip), %rdi
-	movl	$0, %eax
+	mov	DWORD PTR -4[rbp], eax
+	mov	eax, DWORD PTR -4[rbp]
+	mov	esi, eax
+	lea	rdi, .LC0[rip]
+	mov	eax, 0
 	call	printf@PLT
-	movl	$0, %eax
+	mov	eax, 0
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -38,17 +39,17 @@ main:
 add_numbers:
 .LFB1:
 	.cfi_startproc
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movl	%edi, -4(%rbp)
-	movl	%esi, -8(%rbp)
-	movl	-4(%rbp), %edx
-	movl	-8(%rbp), %eax
-	addl	%edx, %eax
-	popq	%rbp
+	mov	DWORD PTR -4[rbp], edi
+	mov	DWORD PTR -8[rbp], esi
+	mov	edx, DWORD PTR -4[rbp]
+	mov	eax, DWORD PTR -8[rbp]
+	add	eax, edx
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
