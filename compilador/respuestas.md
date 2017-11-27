@@ -13,8 +13,11 @@
 Si tipeamos nm calculator.o en el terminal, nos muestra la tabla de símbolos del objeto: 
 
 000000000000003e T add_numbers
+
                  U _GLOBAL_OFFSET_TABLE_
+
 0000000000000000 T main
+
                  U printf
 
 
